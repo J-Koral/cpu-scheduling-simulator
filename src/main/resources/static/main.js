@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     processContainer.addEventListener("input", (e) => {
-        const i = e.target.dataset.i;
+        const i = e.target.dataset.index;
         const field = e.target.dataset.field;
         if(field === "arrivalTime" || field === "burstTime") {
             processes[i][field] = Number(e.target.value);
@@ -68,4 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             results.textContent = "Error: " + error;
         });
     });
+
+    addProcessButton.click();
 });
