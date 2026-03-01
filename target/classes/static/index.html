@@ -1,0 +1,25 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CPU Scheduling Simulator</title>
+    <script defer src="main.js"></script>
+</head>
+<body>
+<h1>CPU Scheduling Simulator</h1>
+<label for="algorithm">Select Algorithm:</label>
+<select id="algorithm">
+    <option value="FCFS">FCFS</option>
+    <option value="SJF">SJF</option>
+    <option value="SRTF">SRTF</option>
+    <option value="RR">RR</option>
+    <option value="Priority">Priority</option>
+</select>
+<h3>Processes</h3>
+<div id="processContainer"></div>
+<button id="add-process">Add Process</button>
+<button id="run-algorithm">Run Simulation</button>
+<h3>Results</h3>
+<pre id="results"></pre>
+</body>
+</html>
