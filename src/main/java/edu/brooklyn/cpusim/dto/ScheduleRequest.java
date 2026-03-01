@@ -14,6 +14,6 @@ import java.util.List;
 @Setter
 public class ScheduleRequest {
     private String algorithm;
-    private int quantum;
+    private Integer quantum;
     private List<Process> processes;
 }
