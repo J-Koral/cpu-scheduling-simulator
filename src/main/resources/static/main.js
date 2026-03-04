@@ -1,10 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const processContainer = document.getElementById("processContainer");
-    const addProcessButton = document.getElementById("add-process");
+    const addProcessButton = document.querySelector(".add-process");
     const runSimulationButton = document.getElementById("run-algorithm");
     const results = document.getElementById("results");
 
+    const modal = document.getElementById("process-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalArrival = document.getElementById("modal-arrival");
+    const modalBurst = document.getElementById("modal-burst");
+    const modalSubmit = document.getElementById("modal-submit");
+    const modalCancel = document.getElementById("modal-cancel");
+
+
     let processes = [];
+    let nextProcessId = "";
 
     function createProcesses() {
         processContainer.innerHTML = "";
@@ -23,13 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addProcessButton.addEventListener("click", () => {
+        nextProcessId = "P" + (processes.length + 1);
+        modalTitle.textContent = nextProcessId;
+        modalArrival.value = 0;
+        modalBurst.value = 0;
+        modal.showModal();
+    });
+
+    modalSubmit.addEventListener("click", () => {
         processes.push({
-            processId: "P" + (processes.length + 1),
-            arrivalTime: 0,
-            burstTime: 0,
-            priority:0
+            processId: nextProcessId,
+            arrivalTime: Number(modalArrival.value),
+            burstTime: Number(modalBurst.value),
+            priority: 0
         });
         createProcesses();
+        modal.close();
+    });
+
+    modalCancel.addEventListener("click", () => {
+       modal.close();
     });
 
     processContainer.addEventListener("input", (e) => {
@@ -69,5 +91,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    addProcessButton.click();
+
 });

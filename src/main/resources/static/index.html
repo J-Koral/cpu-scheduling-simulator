@@ -17,7 +17,23 @@
 </select>
 <h3>Processes</h3>
 <div id="processContainer"></div>
-<button id="add-process">Add Process</button>
+<!---<button id="add-process">Add Process</button>-->
+<button class="button add-process">Add Process Modal</button>
+
+<dialog id="process-modal">
+    <h2 id="modal-title"></h2>
+    <label>Arrival Time:</label>
+    <input type="number" id="modal-arrival" value="0">
+
+    <label>Burst Time:</label>
+    <input type="number" id="modal-burst" value="0">
+
+    <div style="margin-top: 15px;">
+        <button id="modal-submit">Submit</button>
+        <button id="modal-cancel">Cancel</button>
+    </div>
+</dialog>
+
 <button id="run-algorithm">Run Simulation</button>
 <h3>Results</h3>
 <pre id="results"></pre>
