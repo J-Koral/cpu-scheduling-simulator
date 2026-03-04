@@ -15,18 +15,22 @@ public class FCFSAlgorithm implements AlgorithmStrategy {
     @Override
     public ScheduleResult runAlgorithm(List<Process> processes) {
 
-        // We sort the processes my arrival time with my custom class.
+        // Sort the processes by arrival time so FCFS runs them in the correct order
         ProcessSorter.sortByArrivalTime(processes);
 
         List<GanttEntry> ganttChart = new ArrayList<>();
         List<ProcessResult> processTable = new ArrayList<>();
 
+        // Keeps track of the current time on the CPU timeline
         int curr = 0;
+        // Keeps track of the time when the process ends
         int end = 0;
+
         for(Process process : processes) {
             String processId = process.getProcessId();
             int arrivalTime = process.getArrivalTime();
             int burstTime = process.getBurstTime();
+
 
             if(curr < arrivalTime) {
                 curr = arrivalTime;
