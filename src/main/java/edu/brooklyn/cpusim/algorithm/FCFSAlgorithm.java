@@ -9,9 +9,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * This class is the implementation of the FCFS CPU scheduling algorithm
+ * The algorithm creates a gantt chart showing where the processes start
+ * and end, a table of results for each process, and average waiting/turnaround
+ *  times and throughput.
+ */
 @Service
 public class FCFSAlgorithm implements AlgorithmStrategy {
 
+    /**
+     * Runs the FCFS scheduling algorithm on the list of processes
+     *
+     * Steps:
+     * 1.   Sort the processes by arrival time
+     * 2.   Build the Gantt chart by tracking when each process starts and finishes
+     * 3.   Calculate the waiting time and turnaround time for each process
+     * 4.   Add the process to the process table when all calculations are finished
+     * 5.   Calculate the throughput
+     * 6.   Package all the information into a ScheduleResult object and return it
+     *
+     * @param processes the list of processes to be scheduled
+     * @return a ScheduleResult containing the Gantt chart, process table,average
+     * waiting/turnaround time, and throughput
+     */
     @Override
     public ScheduleResult runAlgorithm(List<Process> processes) {
 
