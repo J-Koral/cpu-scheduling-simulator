@@ -13,7 +13,7 @@ java -version
 
 ## How to Run the Project
 1. Open a terminal in the project folder. Go to the main project directory (cpu-scheduling-simulator).
-2. Start the Spring Boot backend by running thre command: .\mvnw.cmd spring-boot:run
+2. Start the Spring Boot backend by running thre command: .\mvnw spring-boot:run
 3. Open the frontend. Open the index.html file in your browser. It is located at: src/main/resources/static/index.html
 
 
