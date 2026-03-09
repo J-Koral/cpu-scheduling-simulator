@@ -31,6 +31,8 @@ This will shut down the Spring Boot server.
 - HTML / CSS / JavaScript
 
 ## Notes
-  Right now the project supports FCFS scheduling. I plan to add more algorithms later like SJF, SRTF, Round Robin, and Priority.
+Right now the project supports FCFS scheduling. I plan to add more algorithms later like SJF, SRTF, Round Robin, and Priority.
 
-
+## Software Documentation
+https://github.com/J-Koral/cpu-scheduling-simulator/tree/master/src/main/resources/SoftwareDocumentation
+Documentation can be found in this folder which includes the SRS document, SDLC, and Project Slides.
