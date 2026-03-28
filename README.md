@@ -12,7 +12,7 @@ You can check your version of java by running:
 java -version
 
 ## Project Structure
-Sure! Here's your project structure based on what you pasted:
+```
 cpu-scheduling-simulator/
 │
 ├── src/
@@ -58,6 +58,7 @@ cpu-scheduling-simulator/
 │           ├── FCFSAlgorithmTest.java
 │           ├── SJFAlgorithmTest.java
 │           └── SRTFAlgorithmTest.java
+```
 
 ## How to Run the Project
 1. Open a terminal in the project folder. Go to the main project directory (cpu-scheduling-simulator).
