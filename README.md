@@ -11,6 +11,54 @@ This project uses ***Java 25***, so you need to have it installed on your comput
 You can check your version of java by running:
 java -version
 
+## Project Structure
+Sure! Here's your project structure based on what you pasted:
+cpu-scheduling-simulator/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/edu/brooklyn/cpusim/
+│   │   │   ├── algorithm/
+│   │   │   │   ├── AlgorithmStrategy.java
+│   │   │   │   ├── FCFSAlgorithm.java
+│   │   │   │   ├── SJFAlgorithm.java
+│   │   │   │   └── SRTFAlgorithm.java
+│   │   │   ├── configuration/
+│   │   │   │   └── WebConfig.java
+│   │   │   ├── controller/
+│   │   │   │   └── SimulationController.java
+│   │   │   ├── dto/
+│   │   │   │   ├── ScheduleRequest.java
+│   │   │   │   └── ScheduleResult.java
+│   │   │   ├── model/
+│   │   │   │   ├── GanttEntry.java
+│   │   │   │   ├── Process.java
+│   │   │   │   └── ProcessResult.java
+│   │   │   ├── Notes/
+│   │   │   │   └── Frontend_JSON_Example.txt
+│   │   │   ├── service/
+│   │   │   │   └── SchedulerService.java
+│   │   │   ├── sorter/
+│   │   │   │   └── ProcessSorter.java
+│   │   │   └── CpuSchedulingSimulatorApplication.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── SoftwareDocumentation/
+│   │       │   ├── Koral CPU Scheduling Simulator Slides.pdf
+│   │       │   ├── Koral Software Development Life Cycle.pdf
+│   │       │   └── Koral, CISC4900 SRS Document.pdf
+│   │       └── static/
+│   │           ├── index.html
+│   │           ├── main.js
+│   │           └── styles.css
+│   │
+│   └── test/
+│       └── java/edu/brooklyn/cpusim/
+│           ├── CpuSchedulingSimulatorApplicationTests.java
+│           ├── FCFSAlgorithmTest.java
+│           ├── SJFAlgorithmTest.java
+│           └── SRTFAlgorithmTest.java
+
 ## How to Run the Project
 1. Open a terminal in the project folder. Go to the main project directory (cpu-scheduling-simulator).
 2. Start the Spring Boot backend by running thre command: .\mvnw spring-boot:run
