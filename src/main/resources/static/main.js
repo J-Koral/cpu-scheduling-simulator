@@ -113,7 +113,7 @@ async function runAlgorithm() {
     console.log('Sending JSON to the backend:', requestBody)
 
     try {
-        const response = await fetch('http://localhost:8080/api/simulate', {
+        const response = await fetch('https://cpu-scheduling-simulator-production-7a45.up.railway.app/api/simulate', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(requestBody)
