@@ -51,7 +51,7 @@ public class FCFSAlgorithm implements AlgorithmStrategy {
             String processId = process.getProcessId();
             int arrivalTime = process.getArrivalTime();
             int burstTime = process.getBurstTime();
-
+            int priority = process.getPriority();
 
             if(curr < arrivalTime) {
                 curr = arrivalTime;
@@ -66,7 +66,7 @@ public class FCFSAlgorithm implements AlgorithmStrategy {
             int turnaroundTime = end - arrivalTime;
             int waitingTime = turnaroundTime - burstTime;
 
-            ProcessResult processResult = new ProcessResult(processId, arrivalTime, burstTime, waitingTime, turnaroundTime);
+            ProcessResult processResult = new ProcessResult(processId, arrivalTime, burstTime, priority, waitingTime, turnaroundTime);
             processTable.add(processResult);
         }
 

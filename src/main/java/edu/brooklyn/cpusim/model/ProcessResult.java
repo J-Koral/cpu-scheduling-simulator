@@ -13,6 +13,7 @@ public class ProcessResult {
     private String processId;
     private int arrivalTime;
     private int burstTime;
+    private int priority;
     private int waitingTime;
     private int turnaroundTime;
 }

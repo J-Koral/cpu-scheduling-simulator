@@ -22,4 +22,12 @@ public class ProcessSorter {
     public static void sortByArrivalTime(List<Process> processes) {
         Collections.sort(processes, Comparator.comparing(Process::getArrivalTime));
     }
+
+    public static void sortByBurstTime(List<Process> processes) {
+        Collections.sort(processes, Comparator.comparing(Process::getBurstTime));
+    }
+
+    public static void sortByProcessId(List<Process> processes) {
+        Collections.sort(processes, Comparator.comparing(Process::getProcessId));
+    }
 }

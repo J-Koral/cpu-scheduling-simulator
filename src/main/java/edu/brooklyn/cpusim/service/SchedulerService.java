@@ -51,6 +51,10 @@ public class SchedulerService {
     private String getAlgorithmKey(AlgorithmStrategy strategy) {
         if (strategy.getClass().getSimpleName().contains("FCFS")) {
             return "FCFS";
+        } if(strategy.getClass().getSimpleName().contains("SJF")) {
+            return "SJF";
+        } if(strategy.getClass().getSimpleName().contains("SRTF")) {
+            return "SRTF";
         } else {
             throw new IllegalArgumentException();
         }
