@@ -231,16 +231,3 @@ function renderAverages(data) {
         </div>
     `
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
