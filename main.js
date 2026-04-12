@@ -148,7 +148,7 @@ async function runAlgorithm() {
     console.log('Sending JSON to the backend:', requestBody)
 
     try {
-        const response = await fetch('', {
+        const response = await fetch('https://cpu-scheduling-simulator-4.onrender.com/api/simulate', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(requestBody)
