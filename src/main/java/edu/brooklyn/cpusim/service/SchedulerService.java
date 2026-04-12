@@ -55,6 +55,8 @@ public class SchedulerService {
             return "SJF";
         } if(strategy.getClass().getSimpleName().contains("SRTF")) {
             return "SRTF";
+        } if(strategy.getClass().getSimpleName().contains("RR")) {
+            return "RR";
         } else {
             throw new IllegalArgumentException();
         }
