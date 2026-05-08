@@ -1,13 +1,16 @@
 package edu.brooklyn.cpusim.service;
 
 import edu.brooklyn.cpusim.algorithm.AlgorithmStrategy;
+import edu.brooklyn.cpusim.algorithm.RRAlgorithm;
+import edu.brooklyn.cpusim.dto.ComparisonRequest;
+import edu.brooklyn.cpusim.dto.ComparisonResult;
 import edu.brooklyn.cpusim.dto.ScheduleRequest;
 import edu.brooklyn.cpusim.dto.ScheduleResult;
 import org.springframework.stereotype.Service;
+import edu.brooklyn.cpusim.model.Process;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 /**
  * This service runs the CPU scheduling simulations.
@@ -57,6 +60,8 @@ public class SchedulerService {
             return "SRTF";
         } if(strategy.getClass().getSimpleName().contains("RR")) {
             return "RR";
+        } if (strategy.getClass().getSimpleName().contains("Priority")) {
+            return "Priority";
         } else {
             throw new IllegalArgumentException();
         }
@@ -75,8 +80,68 @@ public class SchedulerService {
      * @return a ScheduleResult object that has the full simulation output.
      */
     public ScheduleResult runSimulation(ScheduleRequest request) {
-        String algorithm = request.getAlgorithm();
-        AlgorithmStrategy strategy = algorithms.get(algorithm);
-        return strategy.runAlgorithm(request.getProcesses());
+        AlgorithmStrategy strategy = resolveStrategy(request.getAlgorithm(), request.getQuantum());
+        return strategy.runAlgorithm(deepCopy(request.getProcesses()));
+    }
+
+    /**
+     * Runs multiple scheduling algorithms on the same set of processes and
+     * returns all results together so the frontend can display them side by side.
+     *
+     * Each algorithm receives its own deep copy of the process list so that
+     * algorithms that sort or mutate the list in place cannot affect the others.
+     *
+     * @param request the comparison request containing a list of algorithm names,
+     *                an optional quantum (for RR), and the shared process list.
+     * @return a ComparisonResult containing each algorithm's ScheduleResult
+     *         keyed by its name, in the same order they were requested.
+     */
+    public ComparisonResult runComparison(ComparisonRequest request) {
+        // LinkedHashMap preserves the order the algorithms were requested in
+        Map<String, ScheduleResult> results = new LinkedHashMap<>();
+
+        for (String algorithmName : request.getAlgorithms()) {
+            AlgorithmStrategy strategy = resolveStrategy(algorithmName, request.getQuantum());
+            // Deep-copy so each algorithm works on a fresh, unmodified list
+            ScheduleResult result = strategy.runAlgorithm(deepCopy(request.getProcesses()));
+            results.put(algorithmName, result);
+        }
+
+        return new ComparisonResult(results);
+    }
+
+    /**
+     * Resolves an algorithm name to its strategy implementation.
+     * Round Robin is handled specially because it needs a quantum value.
+     *
+     * @param name    the algorithm name, e.g. "FCFS", "RR"
+     * @param quantum the time quantum — only used when name is "RR"
+     * @return the AlgorithmStrategy that should be used
+     */
+    private AlgorithmStrategy resolveStrategy(String name, Integer quantum) {
+        if ("RR".equals(name)) {
+            int q = (quantum != null && quantum > 0) ? quantum : 2;
+            return new RRAlgorithm(q);
+        }
+        AlgorithmStrategy strategy = algorithms.get(name);
+        if (strategy == null) {
+            throw new IllegalArgumentException("Unknown algorithm: " + name);
+        }
+        return strategy;
+    }
+
+    /**
+     * Creates a deep copy of the process list so that each algorithm run
+     * starts with the original, unmodified data.
+     *
+     * @param processes the original list of processes
+     * @return a new list containing new Process objects with identical field values
+     */
+    private List<Process> deepCopy(List<Process> processes) {
+        List<Process> copy = new ArrayList<>();
+        for (Process p : processes) {
+            copy.add(new Process(p.getProcessId(), p.getArrivalTime(), p.getBurstTime(), p.getPriority()));
+        }
+        return copy;
     }
 }

@@ -1,5 +1,7 @@
 package edu.brooklyn.cpusim.controller;
 
+import edu.brooklyn.cpusim.dto.ComparisonRequest;
+import edu.brooklyn.cpusim.dto.ComparisonResult;
 import edu.brooklyn.cpusim.dto.ScheduleRequest;
 import edu.brooklyn.cpusim.dto.ScheduleResult;
 import edu.brooklyn.cpusim.service.SchedulerService;
@@ -42,6 +44,23 @@ public class SimulationController {
     @PostMapping("/simulate")
     public ResponseEntity<ScheduleResult> simulate(@RequestBody ScheduleRequest request) {
         ScheduleResult result = schedulerService.runSimulation(request);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    /**
+     * Runs multiple CPU scheduling algorithms on the same process set in one request.
+     *
+     * The frontend sends a list of algorithm names (e.g. ["FCFS", "SJF", "RR"])
+     * together with the shared process list. Each algorithm runs independently on
+     * a copy of the data, and all results are returned together so the frontend
+     * can display them side by side.
+     *
+     * @param request the comparison request containing algorithm names, optional quantum, and processes
+     * @return a ResponseEntity with the ComparisonResult (map of algorithm → ScheduleResult) and HTTP 200
+     */
+    @PostMapping("/compare")
+    public ResponseEntity<ComparisonResult> compare(@RequestBody ComparisonRequest request) {
+        ComparisonResult result = schedulerService.runComparison(request);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
