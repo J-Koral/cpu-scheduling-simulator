@@ -41,6 +41,7 @@ async function runAlgorithm() {
         const data = await response.json()
         console.log('Received from /simulate:', data)
         renderResults(data)
+        document.getElementById('server-notice').style.display = 'none'
         saveRecent({
             mode:              'single',
             algorithm,
@@ -85,6 +86,7 @@ async function runComparison() {
         const data = await response.json()
         console.log('Received from /compare:', data)
         renderComparison(data.results)
+        document.getElementById('server-notice').style.display = 'none'
         saveRecent({
             mode:         'compare',
             algorithms,
