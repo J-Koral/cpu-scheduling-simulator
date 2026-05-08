@@ -8,7 +8,7 @@ import { saveRecent } from './recents.js'
 // or leave it as-is for production.
 const API_BASE = window.location.hostname === 'localhost'
     ? 'http://localhost:8080/api'
-    : 'https://cpu-scheduling-simulator-4.onrender.com/api'
+    : 'https://myster-ssf.onrender.com/api'
 
 // Entry point called by the Run button
 
