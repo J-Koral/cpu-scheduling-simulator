@@ -4,7 +4,7 @@ import { renderResults }     from './render.js'
 import { renderComparison }  from './compare.js'
 import { saveRecent } from './recents.js'
 
-const API_BASE = 'https://cpu-scheduling-simulator-4vtw.onrender.com'
+const API_BASE = 'https://cpu-scheduling-simulator-4vtw.onrender.com/api'
 
 // Entry point called by the Run button
 
