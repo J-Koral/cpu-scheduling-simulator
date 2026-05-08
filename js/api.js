@@ -4,11 +4,7 @@ import { renderResults }     from './render.js'
 import { renderComparison }  from './compare.js'
 import { saveRecent } from './recents.js'
 
-// Switch this one line to point at your local backend while developing,
-// or leave it as-is for production.
-const API_BASE = window.location.hostname === 'localhost'
-    ? 'http://localhost:8080/api'
-    : 'https://cpu-scheduling-simulator-4.onrender.com/api'
+const API_BASE = 'https://cpu-scheduling-simulator-4vtw.onrender.com'
 
 // Entry point called by the Run button
 
